@@ -5,7 +5,7 @@ const githubQuery = (pageCount, queryString, paginationKeyword, paginationString
             viewer {
                 name
             }
-            search(query: "${queryString} user:levijackson", type: REPOSITORY, ${paginationKeyword}: ${pageCount}, ${paginationString}) {
+            search(query: "${queryString} user:levijackson sort:updated-desc", type: REPOSITORY, ${paginationKeyword}: ${pageCount}, ${paginationString}) {
                 repositoryCount,
                 edges {
                   cursor,

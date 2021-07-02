@@ -64,7 +64,7 @@ function App() {
 
   return (
     <div className="container mt-5">
-      <h1 className="text-primary"><i className="bi bi-diagram-2-fill"></i> Repos from {userName}</h1>
+      <h1 className="text-primary"><i className="bi bi-diagram-2-fill"></i> Public repos from {userName}</h1>
       <SearchBox
         totalCount={totalCount}
         pageCount={pageCount}
