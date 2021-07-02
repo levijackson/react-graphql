@@ -1,10 +1,18 @@
-const SearchBox = ({
-    totalCount,
-    pageCount,
-    queryString,
-    onTotalChange,
-    onQueryChange,
-  }) => {
+interface SearchBoxInterface {
+  totalCount: number,
+  pageCount: number,
+  queryString: string,
+  onTotalChange: Function,
+  onQueryChange: Function
+}
+
+const SearchBox = (props: SearchBoxInterface) => {
+    const totalCount = props.totalCount;
+    const pageCount = props.pageCount;
+    const queryString = props.queryString;
+    const onTotalChange = props.onTotalChange;
+    const onQueryChange = props.onQueryChange;
+
     return (
       <div className="d-flex align-items-center bg-light px-3 py-2 small rounded-3">
         <div className="d-flex align-items-center flex-grow-1">

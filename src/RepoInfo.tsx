@@ -1,4 +1,12 @@
-const RepoInfo = ({repo}) => {
+import RepoInterface from "./types/Repo";
+
+interface RepoInfoInterface {
+    repo: RepoInterface
+}
+
+const RepoInfo = (props: RepoInfoInterface) => {
+    const repo = props.repo;
+    
     return (
         <li className="list-group-item" key={repo.id.toString()}>
             <div className="d-flex justify-content-between align-items-center">

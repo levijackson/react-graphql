@@ -1,4 +1,18 @@
-const NavButtons = ({ start, end, next, previous, onPage }) => {
+interface NavButtonsInterface {
+  start: string|null,
+  end: string|null,
+  next: boolean|null,
+  previous: boolean|null,
+  onPage: Function
+}
+
+const NavButtons = (props: NavButtonsInterface) => {
+  const start = props.start;
+  const end = props.end;
+  const next = props.next;
+  const previous = props.previous;
+  const onPage = props.onPage;
+
   return (
     <div className="d-flex justify-content-center my-2">
     {previous && (
