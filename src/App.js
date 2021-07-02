@@ -1,6 +1,6 @@
 import github from "./db.js";
 import query from "./Query.js";
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 import RepoInfo from "./RepoInfo.js";
 import SearchBox from "./SearchBox.js";
 import NavButtons from "./NavButtons.js";
@@ -18,38 +18,44 @@ function App() {
   let [hasNextPage, setHasNextPage] = useState(true);
   let [paginationKeyword, setPaginationKeyword] = useState("first");
   let [paginationString, setPaginationString] = useState("");
+  const apiSearchRef = useRef(null);
 
   const fetchData = useCallback( () => {
-    const queryText = JSON.stringify(query(pageCount, queryString, paginationKeyword, paginationString));
+    if (apiSearchRef.current) {
+      clearTimeout(apiSearchRef.current);
+    }
+    apiSearchRef.current = setTimeout(() => {
+      const queryText = JSON.stringify(query(pageCount, queryString, paginationKeyword, paginationString));
 
-    fetch(github.baseUrl, {
-      method: "POST",
-      headers: github.headers,
-      body: queryText
-    })
-    .then(response => response.json())
-    .then(data => {
-      console.log(data);
+      fetch(github.baseUrl, {
+        method: "POST",
+        headers: github.headers,
+        body: queryText
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
 
-      const viewer = data.data.viewer;
-      const repos = data.data.search.edges;
-      const total = data.data.search.repositoryCount;
-      const start = data.data.search.pageInfo?.startCursor;
-      const end = data.data.search.pageInfo?.endCursor;
-      const next = data.data.search.pageInfo?.hasNextPage;
-      const prev = data.data.search.pageInfo?.hasPreviousPage;
+        const viewer = data.data.viewer;
+        const repos = data.data.search.edges;
+        const total = data.data.search.repositoryCount;
+        const start = data.data.search.pageInfo?.startCursor;
+        const end = data.data.search.pageInfo?.endCursor;
+        const next = data.data.search.pageInfo?.hasNextPage;
+        const prev = data.data.search.pageInfo?.hasPreviousPage;
 
-      setUserName(viewer.name);
-      setRepoList(repos);
-      setTotalCount(total);
-      setStartCursor(start);
-      setEndCursor(end);
-      setHasNextPage(next);
-      setHasPreviousPage(prev);
-    })
-    .catch( error => {
-      console.log(error);
-    })
+        setUserName(viewer.name);
+        setRepoList(repos);
+        setTotalCount(total);
+        setStartCursor(start);
+        setEndCursor(end);
+        setHasNextPage(next);
+        setHasPreviousPage(prev);
+      })
+      .catch( error => {
+        console.log(error);
+      })
+    }, 300);
   }, [pageCount, queryString, paginationString, paginationKeyword]);
 
   useEffect(() => {

@@ -2,6 +2,10 @@
 
 This project was based on [Building a GraphQL Project with React.js](https://github.com/LinkedInLearning/react-graphql-2875095/) by [Ray Villalobos](https://github.com/planetoftheweb).
 
+Key differences:
+- Added debouncing to ensure we don't fire off too many requests
+- Added `db.js.example` to make setup easier
+
 # Setup
 1) [Generate a personal access token](https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token)
 
