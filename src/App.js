@@ -1,4 +1,4 @@
-import github from "./db.js";
+import github from "./config/db.js";
 import query from "./Query.js";
 import { useEffect, useState, useCallback, useRef } from "react";
 import RepoInfo from "./RepoInfo.js";

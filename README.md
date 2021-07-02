@@ -13,7 +13,7 @@ Permissions should be read-only:
 - `repo` (all of them)
 - `user` (all of them)
 
-2) Copy `db.js.example` to `./src/db.js`
+2) Copy `db.js.example` to `./src/config/db.js`
 ```
 cp ./db.js.example ./src/db.js
 ```
