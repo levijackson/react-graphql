@@ -1,0 +1,9 @@
+const github = {
+    baseUrl: "https://api.github.com/graphql",
+    headers: {
+        "Content-Type": "application/json",
+        Authorization: "bearer <github_auth_token>"
+    }
+}
+
+export default github;
