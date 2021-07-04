@@ -6,9 +6,10 @@ Key differences:
 - Converted to TypeScript
 - Added debouncing to ensure we don't fire off too many requests
 - Added `db.js.example` to make setup easier
+- Consolidated a bunch of the search configuration options into a single state variable to pass around/validate
 
 # Setup
-1) [Generate a personal access token](https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token)
+1) [Generate a personal access token](https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token) to be able to make API requests to Github's GraphQL.
 
 Permissions should be read-only:
 - `repo` (all of them)

@@ -40,6 +40,7 @@ function App() {
       return;
     }
 
+    // Only allow one search at a time
     if (apiSearchRef.current) {
       clearTimeout(apiSearchRef.current);
     }
